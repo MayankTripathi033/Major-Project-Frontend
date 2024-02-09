@@ -24,8 +24,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
+import Chat from "scenes/Chat/Chat";
 
-const Navbar = () => {
+const Navbar = ({ title }) => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ const Navbar = () => {
             },
           }}
         >
-          Sociopedia
+          {title}
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
@@ -84,7 +85,7 @@ const Navbar = () => {
             )}
           </IconButton>
           <Message sx={{ fontSize: "25px" }} />
-          <Notifications sx={{ fontSize: "25px" }} />
+          <Notifications sx={{ fontSize: "25px" }} onClick={() => <Chat />} />
           <Help sx={{ fontSize: "25px" }} />
           <FormControl variant="standard" value={fullName}>
             <Select

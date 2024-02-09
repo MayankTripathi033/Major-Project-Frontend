@@ -4,7 +4,7 @@ import Navbar from "scenes/navbar/Navbar";
 const Homepage = () => {
   return (
     <Box>
-      <Navbar />
+      <Navbar title="Sociopedia" />
     </Box>
   );
 };

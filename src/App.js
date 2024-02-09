@@ -1,16 +1,18 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import Loginpage from "scenes/loginPage";
-import Homepage from "scenes/homePage";
-import Profilepage from "scenes/profilePage";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import HomePage from "scenes/homePage";
+import LoginPage from "scenes/loginPage";
+import ProfilePage from "scenes/profilePage";
+import Chat from "scenes/Chat/Chat";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { createTheme } from "@mui/material";
-import { themeSettings } from "theme";
+import { createTheme } from "@mui/material/styles";
+import { themeSettings } from "./theme";
 
 function App() {
   const mode = useSelector((state) => state.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  // const isAuth = Boolean(useSelector((state) => state.token));
 
   return (
     <div className="app">
@@ -18,9 +20,10 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
-            <Route path="/" element={<Loginpage />} />
-            <Route path="/home" element={<Homepage />} />
-            <Route path="/Profile/:userId" element={<Profilepage />} />
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/profile/:userId" element={<ProfilePage />} />
+            <Route path="/Chat/:userId" element={<Chat />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
